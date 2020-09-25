@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+
+  vault:
+    image: vault:latest
+    container_name: vaultcontainer
+    ports:
+      - "8200:8200"
+
+  server1:
+    build: ./server1/
+    container_name: server1
+    ports:
+      - "22:22"
+    command: /usr/sbin/sshd -D
+
+  webserver:
+    image: httpd:latest
+    container_name: webserver
+    volumes:
+      - ./webserver/htdocs:/usr/local/apache2/htdocs/
+    ports:
+      - "80:80"
