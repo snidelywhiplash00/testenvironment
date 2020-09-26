@@ -10,6 +10,8 @@ services:
   server1:
     build: ./server1/
     container_name: server1
+    volumes:
+      - ./server1/sshd_config:/etc/ssh/sshd_config
     ports:
       - "22:22"
     command: /usr/sbin/sshd -D
